@@ -1,7 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Book() {
-  return "This is the output of a book component. Replace this string with code to display an individual book's attributes.";
+
+
+const Book =(props) => {
+  return (
+    <div>
+      <h2>{props.title}</h2>
+      <h3>{props.author}</h3>
+    </div>
+  );
 }
 
 export default Book;

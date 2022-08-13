@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Book from './components/Book';
-import bookList from './models/books.json';
+import bookData from './models/books.json';
+
 
 function App() {
-  const books = bookList;
-  return <Book/>;
+  console.log(bookData[0])
+ return <div>
+   Stephs Bookcase App
+   <Book title={bookData[0].volumeInfo.title} author={bookData[0].volumeInfo.authors}/>
+   <Book title="the color Pruple" author="Alice Walker"/>
+ </div>
+  
 }
 
 export default App;
