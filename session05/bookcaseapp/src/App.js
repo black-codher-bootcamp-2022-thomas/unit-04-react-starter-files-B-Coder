@@ -5,12 +5,13 @@ import bookData from './models/books.json';
 
 function App() {
   console.log(bookData[0])
- return <div>
-   Stephs Bookcase App
-   <Book title={bookData[0].volumeInfo.title} author={bookData[0].volumeInfo.authors}/>
-   <Book title="the color Pruple" author="Alice Walker"/>
- </div>
-  
+  return <div>
+    Stephs Bookcase App
+    {bookData.map(currentBook => <Book title={currentBook.volumeInfo.title} author={currentBook.volumeInfo.authors} />)}
+
+
+  </div>
+
 }
 
 export default App;
