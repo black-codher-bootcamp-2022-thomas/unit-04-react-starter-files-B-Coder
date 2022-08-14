@@ -1,17 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-
-
-const Book =(props) => {
+const Book = (props) => {
   return (
     <div>
-      <h2>{props.title}</h2>
-      <h3>{props.author}</h3>
-      <h4>{props.price}</h4>
-      <h5>{props.description}</h5>
+      <h1>{props.title}</h1>
+      <p>{props.author}</p>
+      <p>{props.price}</p>
+      <p>{props.description}</p>
     </div>
   );
-}
+};
 
 export default Book;

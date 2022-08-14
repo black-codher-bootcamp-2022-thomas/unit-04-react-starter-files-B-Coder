@@ -1,13 +1,21 @@
-// import Books from './../models/books.json'
-// import Book from './Book'
-// import React, { useState } from 'react';
+import React from "react";
+import Book from "./Book";
 
-// const BookList=(props) => {
-//     const [mybooksList, setMyBooksList] = useState(Books);
-    
-//     return (
-//         myBooksList.map(book => <Book onClick={() => console.log("hello")} book={book}/>)
-//     )
-// }
+const BookList =(props) => {
+    return (
+        <>
+          Stephs Bookcase App
+          {props.fullbookdata.map((currentBook) => (
+            <Book
+              key={currentBook.id}
+              title={currentBook.volumeInfo.title}
+              author={currentBook.volumeInfo.authors}
+              price={currentBook.saleInfo.retailPrice?.amount ?? "no price available" }
+              description={currentBook.volumeInfo?.description ?? "no description available"}
+            />
+          ))}
+        </>
+      );
+    }
 
-// export default BookList; 
+export default BookList;
