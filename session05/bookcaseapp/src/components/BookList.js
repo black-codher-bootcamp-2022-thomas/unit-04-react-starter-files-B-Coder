@@ -4,7 +4,6 @@ import Book from "./Book";
 const BookList =(props) => {
     return (
         <>
-          Stephs Bookcase App
           {props.fullbookdata.map((currentBook) => (
             <Book
               key={currentBook.id}
