@@ -21,18 +21,18 @@ const App = () => {
     }
     )]);
   }
-// added by Steph 
-const findBooks = async (keyword) => {
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&filter=paid-ebooks&print-type=books&projection=lite`;
+  // added by Steph 
+  const findBooks = async (keyword) => {
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&filter=paid-ebooks&print-type=books&projection=lite`;
 
-  console.log("url: ", url);
-  const response = await fetch(url, { method: "GET" });
-  const result = await response.json();
-  if(!result.error){
-    setBooks(result.items)
-  }
-};
-// 
+    console.log("url: ", url);
+    const response = await fetch(url, { method: "GET" });
+    const result = await response.json();
+    if (!result.error) {
+      setBooks(result.items)
+    }
+  };
+
   const removeFromBookcase = (id) => {
     setBookcase(bookcase.filter(book => book.id !== id));
     setBooks([...books.map(book => {
@@ -50,27 +50,29 @@ const findBooks = async (keyword) => {
       el.innerText = ` Bookcase (${bookcase.length})`;
     });
   });
-// 
+  return (
+
     <Router>
       <div className="container">
         <Routes>
-        <Route exact path="/" element={
-          <>
-            <Header bookLength={bookcase.length} />
-            <Search findBooks={findBooks}/>
-            <BookList books={books} stored="library" addToBookcase={addToBookcase} removeFromBookcase={removeFromBookcase} />
-          </>
-        } />
-        <Route path="/bookcase" element={
-          <>
-            <Header bookLength={bookcase.length} />
-            <BookList books={bookcase} stored="bookcase" addToBookcase={addToBookcase} removeFromBookcase={removeFromBookcase} />
-          </>
-        } />
-        <Route path="/about" component={() => <About bookLength={bookcase.length} />} />
+          <Route exact path="/" element={
+            <>
+              <Header bookLength={bookcase.length} />
+              <Search findBooks={findBooks} />
+              <BookList books={books} stored="library" addToBookcase={addToBookcase} removeFromBookcase={removeFromBookcase} />
+            </>
+          } />
+          <Route path="/bookcase" element={
+            <>
+              <Header bookLength={bookcase.length} />
+              <BookList books={bookcase} stored="bookcase" addToBookcase={addToBookcase} removeFromBookcase={removeFromBookcase} />
+            </>
+          } />
+          <Route path="/about" component={() => <About bookLength={bookcase.length} />} />
         </Routes>
       </div>
     </Router>
+  )
 }
 
 export default App;

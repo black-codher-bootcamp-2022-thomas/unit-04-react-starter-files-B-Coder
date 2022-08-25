@@ -15,6 +15,7 @@ const Search = (props) => {
     const result = await response.json();
     console.log(result);
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -33,4 +34,5 @@ const Search = (props) => {
     </div>
   );
 };
+
 export default Search;
