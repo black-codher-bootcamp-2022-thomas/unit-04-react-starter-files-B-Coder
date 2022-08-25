@@ -26,7 +26,7 @@ function App() {
             <button onClick={() => setAllBookData([bookData[22]])}>
               change book
             </button>
-            <Search findBooks={findBooks}/>
+            <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword}/>
             <BookList fullbookdata={allBookData} />
           </div>
         )}

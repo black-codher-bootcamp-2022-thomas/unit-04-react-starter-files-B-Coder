@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-const Search = () => {
+const Search = (props.setkeyword) => {
     const [keyword, setKeyword] = useState("")
     return (
         <>
-            <form><p style={{color:"red"}}><em>{keyword && 'Keywords Typed: ' + keyword}</em></p>
+            <form onSubmit={handleSubmit}><p style={{ color: "red" }}><em>{keyword && 'Keywords Typed: ' + keyword}</em></p>
                 <label>
                     Search:
-                    <input type="text" value={keyword} onChange={(e) => setKeyword(e.target.value)} />
+                    <input type="text" value={props.setKeyword} onChange={(e) => props.setKeyword(e.target.value)} />
                 </label>
                 <input type="submit" value="submit" />
             </form>
