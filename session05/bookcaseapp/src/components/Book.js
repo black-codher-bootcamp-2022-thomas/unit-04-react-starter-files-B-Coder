@@ -1,7 +1,17 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-function Book() {
-  return "This is the output of a book component. Replace this string with code to display an individual book's attributes.";
-}
+const Book = ({title, author, price, description, bookcover}) => {
+  return (
+    <div style={{ border: "4px solid indigo" }}>
+      <h1>{`Title: ${title}`}</h1>
+      <p>{`Author: ${author}`}</p>
+      <img src={bookcover} alt={` ${title} by ${author}`}/>
+      <p>{`Price: ${price}`}</p>
+      <p>{`description: ${description}`}</p>
+    
+    </div>
+  );
+};
 
 export default Book;
