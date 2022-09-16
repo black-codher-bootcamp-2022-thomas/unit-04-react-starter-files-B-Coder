@@ -6,10 +6,13 @@ import BookList from './components/BookList';
 import About from './pages/About';
 import data from './models/local-books.json';
 import Search from './components/Search';
+import Pagination from './components/Pagination';
 
 const App = () => {
   const [books, setBooks] = useState(data);
   const [bookcase, setBookcase] = useState([]);
+  const [startIndex, setStartIndex] = useState(0);
+  const [keyword, setKeyword] = useState("");
 
   const addToBookcase = (id) => {
     setBookcase(bookcase.concat(books.filter(book => book.id === id)));
@@ -21,8 +24,11 @@ const App = () => {
     }
     )]);
   }
-  // added by Steph 
-  const findBooks = async (keyword) => {
+
+  useEffect(() => {
+    findBooks(keyword, startIndex)
+  }, [keyword, startIndex]);
+  const findBooks = async (keyword, startIndex) => {
     const url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&filter=paid-ebooks&print-type=books&projection=lite`;
 
     console.log("url: ", url);
@@ -44,12 +50,11 @@ const App = () => {
     )]);
   }
 
-  useEffect(() => {
-    document.title = `My Library ${bookcase.length} Read`;
-    Array.from(document.getElementsByClassName("bookLink")).forEach((el) => {
-      el.innerText = ` Bookcase (${bookcase.length})`;
-    });
+  document.title = `My Library ${bookcase.length} Read`;
+  Array.from(document.getElementsByClassName("bookLink")).forEach((el) => {
+    el.innerText = ` Bookcase (${bookcase.length})`;
   });
+
   return (
 
     <Router>
@@ -58,7 +63,8 @@ const App = () => {
           <Route exact path="/" element={
             <>
               <Header bookLength={bookcase.length} />
-              <Search findBooks={findBooks} />
+              <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword} />
+              <Pagination setStartIndex={setStartIndex} startIndex={startIndex} />
               <BookList books={books} stored="library" addToBookcase={addToBookcase} removeFromBookcase={removeFromBookcase} />
             </>
           } />
@@ -72,7 +78,7 @@ const App = () => {
         </Routes>
       </div>
     </Router>
-  )
-}
+  );
+};
 
 export default App;
